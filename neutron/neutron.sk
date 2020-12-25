@@ -23,9 +23,9 @@ command /neutron [<text>]:
 				send "{@p} Reloading {@h}Neutron{@t}..."
 				wait 1 second
 				if sender is op:
-					player command "/sk reload %skript%"
+					player command "/skript reload %skript%"
 				else:
-					console command "/sk reload %skript%"
+					console command "/skript reload %skript%"
 					wait 3 seconds
 					send "{@p} Successfully reloaded {@h}Neutron{@t}."
 		else if arg 1 is set:
@@ -109,8 +109,8 @@ command /chat [<text>] [<text>] [<text>]:
 						set {_player} to arg-3 parsed as a player
 						set {neutron.group::%{_player}%} to "%arg-2%"
 						add {_player} to {neutron.group.%arg-2%::*}
-						#if "{@permissionManager}" is "pex":
-						#	console command "/pex user %{_player}% add neutron.group.%arg-2%"
+						if "{@permissionManager}" is "luckperms":
+							console command "/luckperms user %{_player}% permissiom set "neutron.group.%arg-2%"
 						#else if "{@permissionManager}" is "essentials" or "groupManager":
 						#	console command "/manuaddp %{_player}% neutron.group.%arg-2%"
 						send "{@p} {@h}%{_player}%{@t}'s chat group has been set to {@h}%arg-2%{@t}."
