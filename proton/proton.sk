@@ -13,7 +13,7 @@ aliases:
 # I DO NOT OWN json.sk, I DON'T TAKE ANY CREDIT
 # json.sk BELONGS TO "RezzedUp"
 options:
-	debug: false
+	debug: true
 	codes: 0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|k|l|m|n|o|r
 function removeColorProton(msg: text) :: text:
 	set {_m::*} to {_msg} split at ""
@@ -68,7 +68,7 @@ function jsonColorizeProton(msg: text, default-color: text = "&r") :: text:
 			if {_char} is "&" or {_code}:
 
 				if {@debug} is true:
-					broadcast "&a[Color Check] &rFOUND: &o%{_char}%%{_next}% &7&m<--&7&o is it valid?"
+					broadcast "&a[Colour Check] &rFOUND: &o%{_char}%%{_next}% &7&m<--&7&o is it valid?"
 
 				loop {_colors::*}:
 
@@ -93,7 +93,7 @@ function jsonColorizeProton(msg: text, default-color: text = "&r") :: text:
 	return {_new}
 function jsonSanitizeProton(msg: text) :: text:
 	if {@debug} is true:
-		broadcast "&a[Sanitize] &7&oSanitizing input..."
+		broadcast "&a[Sanitise] &7&oSanitising input..."
 
 	set {_m::*} to {_msg} split at ""
 
@@ -541,38 +541,38 @@ command /spawn [<player=%player%>]:
 			send "{@a} Spawn is not set."
 			if sender has permission "proton.setspawn":
 				send "&cUsage: /setspawn"
-#command /effect [<text>] [<text>] [<integer>] [<integer>]:
-#	permission: proton.effect
-#	permission message: {@em}
-#	usage: &c/effect
-#	description: Apply potion effects to a player
-#	trigger:
-#		if arg 1 is not set:
-#			send "&cUsage: /effect [player] [effect] [time] (tier)"
-#		if arg 1 is "all" or "*":
-#			if player has permission "proton.effect.all":
-#				if arg 2 is set:
-#					if arg 3 is set:
-#						if arg 4 is set:
-#							loop all players:
-#								apply (arg-2) (arg-4) to loop-player for (arg-3) seconds
-#							send "{@p} Applied {@h}%arg-2% %arg-3%{@t} to all players for {@h}%arg-4% seconds{@t}."
-#						else:
-#							loop all players:
-#								apply (arg-2) to loop-player for (arg-3) seconds
-#							send "{@p} Applied {@h}%arg-2%{@t} to all players for {@h}%arg-4% seconds{@t}."
-#					else:
-#						send "&cUsage: /effect %arg-1% %arg-2% [time] (tier)"
-#				else:
-#					send "&cUsage: /effect %arg-1% [effect] [time] (tier)"
-#			else:
-#				send "&cInsufficient permissions."
-#		else if arg 1 is set:
-#			if arg 2 is set:
-#				if arg 3 is set:
-#					if arg 4 is set:
-#						apply (arg-2) (arg-4) to (arg-1) for (arg-3) seconds
-#						send "{@p} Applied {@h}%arg-2% %arg-3%{@t} to &a%arg-1% for {@h}%arg-4% seconds{@t}."
+command /effect [<text>] [<text>] [<integer>] [<integer>]:
+	permission: proton.effect
+	permission message: {@em}
+	usage: &c/effect
+	description: Apply potion effects to a player
+	trigger:
+		if arg 1 is not set:
+			send "&cUsage: /effect [player] [effect] [time] (tier)"
+		if arg 1 is "all" or "*":
+			if player has permission "proton.effect.all":
+				if arg 2 is set:
+					if arg 3 is set:
+						if arg 4 is set:
+							loop all players:
+								apply (arg-2) (arg-4) to loop-player for (arg-3) seconds
+							send "{@p} Applied {@h}%arg-2% %arg-3%{@t} to all players for {@h}%arg-4% seconds{@t}."
+						else:
+							loop all players:
+								apply (arg-2) to loop-player for (arg-3) seconds
+							send "{@p} Applied {@h}%arg-2%{@t} to all players for {@h}%arg-4% seconds{@t}."
+					else:
+						send "&cUsage: /effect %arg-1% %arg-2% [time] (tier)"
+				else:
+					send "&cUsage: /effect %arg-1% [effect] [time] (tier)"
+			else:
+				send "&cInsufficient permissions."
+		else if arg 1 is set:
+			if arg 2 is set:
+				if arg 3 is set:
+					if arg 4 is set:
+						apply (arg-2) (arg-4) to (arg-1) for (arg-3) seconds
+						send "{@p} Applied {@h}%arg-2% %arg-3%{@t} to &a%arg-1% for {@h}%arg-4% seconds{@t}."
 
 on join:
 	delete {proton.visibility::%event-player%}
